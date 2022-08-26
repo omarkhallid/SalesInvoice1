@@ -64,6 +64,10 @@ public class Bill {
     public void setDate(String date) {
         this.date = date;
     }
+    
+    public String getCsv(){
+        return number +"," + date + "," + client + ",";
+    }
 
     @Override
     public String toString() {

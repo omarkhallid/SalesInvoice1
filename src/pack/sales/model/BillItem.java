@@ -54,6 +54,11 @@ public class BillItem {
     public void setPrice(float price) {
         this.price = price;
     }
+    
+    public String getCsv() {
+        return bill.getNumber() + "," + item + "," + price + "," + count;
+    }
+
 
     @Override
     public String toString() {

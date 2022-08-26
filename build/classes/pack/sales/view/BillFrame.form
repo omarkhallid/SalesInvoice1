@@ -95,48 +95,35 @@
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="invoiceNumber_Label" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Component id="invoiceTotalButton" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="invoiceTotal_Label" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="customerNameButton" min="-2" pref="95" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="customerName_Label" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" attributes="0">
-                                      <Component id="invoiceNumberButton" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="164" max="32767" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" attributes="0">
-                                      <Component id="invoiceDateButton" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="invoiceDate_Label" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                          </Group>
-                      </Group>
-                      <EmptySpace pref="284" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
                       <Component id="createItem_Button" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="187" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Component id="deleteItem_Button" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="107" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane2" min="-2" pref="428" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jScrollPane2" min="-2" pref="428" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="invoiceNumberButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="invoiceDateButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="customerNameButton" alignment="0" min="-2" pref="95" max="-2" attributes="0"/>
+                                  <Component id="invoiceTotalButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="invoiceTotal_Label" pref="96" max="32767" attributes="0"/>
+                                  <Component id="customerName_Label" max="32767" attributes="0"/>
+                                  <Component id="invoiceNumber_Label" max="32767" attributes="0"/>
+                                  <Component id="invoiceDate_Label" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -146,28 +133,29 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="invoiceNumber_Label" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="invoiceNumberButton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="invoiceNumberButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="invoiceNumber_Label" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="invoiceDateButton" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="invoiceDate_Label" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="invoiceDate_Label" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="customerNameButton" alignment="0" min="-2" pref="14" max="-2" attributes="0"/>
-                          <Component id="customerName_Label" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="customerName_Label" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="invoiceTotalButton" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="invoiceTotal_Label" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="invoiceTotal_Label" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="41" max="32767" attributes="0"/>
                       <Component id="jScrollPane2" min="-2" pref="279" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
@@ -233,6 +221,8 @@
         <Property name="text" type="java.lang.String" value="Invoice Number"/>
       </Properties>
     </Component>
+    <Component class="javax.swing.JLabel" name="invoiceNumber_Label">
+    </Component>
     <Component class="javax.swing.JLabel" name="invoiceDateButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Invoice Date"/>
@@ -247,8 +237,6 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Invoice Total"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="invoiceNumber_Label">
     </Component>
     <Component class="javax.swing.JLabel" name="invoiceDate_Label">
     </Component>

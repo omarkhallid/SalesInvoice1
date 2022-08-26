@@ -8,6 +8,7 @@ package pack.sales.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -24,21 +25,25 @@ import pack.sales.model.BillsTableModel;
 import pack.sales.model.ItemsTableModel;
 import pack.sales.view.BillDialogue;
 import pack.sales.view.BillItemDialogue;
-import pack.sales.view.BillFrame;/**
- *
+import pack.sales.view.BillFrame;
 
 /**
+ *
+ *
+ * /**
  *
  * @author Compu Academy
  */
 public class Controller implements ActionListener, ListSelectionListener {
-    
+
     private BillFrame frame;
     private BillDialogue billDialogue;
     private BillItemDialogue billItemDialogue;
+
     public Controller(BillFrame frame) {
         this.frame = frame;
     }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         String actionComm = e.getActionCommand();
@@ -83,26 +88,27 @@ public class Controller implements ActionListener, ListSelectionListener {
             case "createItemCancel":
                 createItemCancel();
                 break;
-                
+
             default:
                 return;
 
         }
 
     }
+
     @Override
     public void valueChanged(ListSelectionEvent e) {
         int selIndex = frame.getBillTable().getSelectedRow();
-        if(selIndex != -1){
-        System.out.println("You have selected Row : "+selIndex);
-        Bill currBill = frame.getBills().get(selIndex);
-        frame.getInvoiceNumber_Label().setText("" + currBill.getNumber());
-        frame.getInvoiceDate_Label().setText(currBill.getDate());
-        frame.getCustomerName_Label().setText(currBill.getClient());
-        frame.getInvoiceTotal_Label().setText("" + currBill.getBillTotal());
-        ItemsTableModel itemsTableModel = new ItemsTableModel(currBill.getBillItems());
-        frame.getBill_ItemsTable().setModel(itemsTableModel);
-        itemsTableModel.fireTableDataChanged();
+        if (selIndex != -1) {
+            System.out.println("You have selected Row : " + selIndex);
+            Bill currBill = frame.getBills().get(selIndex);
+            frame.getInvoiceNumber_Label().setText("" + currBill.getNumber());
+            frame.getInvoiceDate_Label().setText(currBill.getDate());
+            frame.getCustomerName_Label().setText(currBill.getClient());
+            frame.getInvoiceTotal_Label().setText("" + currBill.getBillTotal());
+            ItemsTableModel itemsTableModel = new ItemsTableModel(currBill.getBillItems());
+            frame.getBill_ItemsTable().setModel(itemsTableModel);
+            itemsTableModel.fireTableDataChanged();
         }
     }
 
@@ -131,23 +137,24 @@ public class Controller implements ActionListener, ListSelectionListener {
                     Path iP = Paths.get(iF.getAbsolutePath());
                     List<String> iLines = Files.readAllLines(iP);
                     System.out.println("Items have been read");
-                    for(String iLine : iLines){
+
+                    for (String iLine : iLines) {
                         String[] iparts = iLine.split(",");
                         int invNum = Integer.parseInt(iparts[0]);
                         String item = iparts[1];
-                        float iprice = Float.parseFloat(iparts[2]) ;
+                        float iprice = Float.parseFloat(iparts[2]);
                         int icount = Integer.parseInt(iparts[3]);
                         Bill bill = null;
-                        for(Bill b : billsArray){
-                            if(b.getNumber() == invNum){
+                        for (Bill b : billsArray) {
+                            if (b.getNumber() == invNum) {
                                 bill = b;
                                 break;
                             }
                         }
-                        
+
                         BillItem bi = new BillItem(item, iprice, icount, bill);
                         bill.getBillItems().add(bi);
-                        
+
                     }
                     System.out.println("Check Point 2");
 
@@ -166,7 +173,40 @@ public class Controller implements ActionListener, ListSelectionListener {
     }
 
     private void saveFile() {
+        ArrayList <Bill> bills = frame.getBills();
+        String billss = "";
+        String itemss = "";
+        for(Bill bill : bills){
+            String billCsv = bill.getCsv();
+            billss += (billCsv+"\n");
+            //billss += "\n";
+            for(BillItem item : bill.getBillItems()){
+                itemss += (item + "\n");
+            
+            }
+        
+        }
+        System.out.println("hehehhe");
+       try{
+        JFileChooser fileChooser = new JFileChooser();
+        int res = fileChooser.showSaveDialog(frame);
+        if(res == JFileChooser.APPROVE_OPTION){
+            File billFile = fileChooser.getSelectedFile();
+            FileWriter billFW = new FileWriter(billFile);
+            billFW.write(billss);
+            billFW.flush();
+            billFW.close();
+            res = fileChooser.showSaveDialog(frame);
+            if (res == JFileChooser.APPROVE_OPTION) {
+                File itemFile = fileChooser.getSelectedFile();
+                FileWriter itemFW = new FileWriter(itemFile);
+                itemFW.write(itemss);
+                itemFW.flush();
+                itemFW.close();
 
+            }
+        }
+    }catch (Exception ex){}
     }
 
     private void crNewInv() {
@@ -177,11 +217,10 @@ public class Controller implements ActionListener, ListSelectionListener {
 
     private void delInv() {
         int selRow = frame.getBillTable().getSelectedRow();
-        if(selRow != -1){
+        if (selRow != -1) {
             frame.getBills().remove(selRow);
             frame.getBillsTableModel().fireTableDataChanged();
         }
-        
 
     }
 
@@ -194,7 +233,7 @@ public class Controller implements ActionListener, ListSelectionListener {
     private void delItem() {
         int selInv = frame.getBillTable().getSelectedRow();
         int selRow = frame.getBill_ItemsTable().getSelectedRow();
-        if (selInv!= -1 && selRow != -1) {
+        if (selInv != -1 && selRow != -1) {
             Bill bill = frame.getBills().get(selInv);
             bill.getBillItems().remove(selRow);
             ItemsTableModel itemsTableModel = new ItemsTableModel(bill.getBillItems());
@@ -209,7 +248,7 @@ public class Controller implements ActionListener, ListSelectionListener {
         String date = billDialogue.getInvDateField().getText();
         String client = billDialogue.getCustNameField().getText();
         int num = frame.getMaxBillNum();
-        
+
         Bill bill = new Bill(num, date, client);
         frame.getBills().add(bill);
         frame.getBillsTableModel().fireTableDataChanged();
@@ -231,25 +270,24 @@ public class Controller implements ActionListener, ListSelectionListener {
         int count = Integer.parseInt(countStr);
         double price = Double.parseDouble(priceStr);
         int selBill = frame.getBillTable().getSelectedRow();
-        if(selBill != -1){
+        if (selBill != -1) {
             Bill bill = frame.getBills().get(selBill);
             BillItem billItem = new BillItem(item, price, count, bill);
             bill.getBillItems().add(billItem);
-           ItemsTableModel itemsTableModel = (ItemsTableModel) frame.getBill_ItemsTable().getModel();
+            ItemsTableModel itemsTableModel = (ItemsTableModel) frame.getBill_ItemsTable().getModel();
             itemsTableModel.fireTableDataChanged();
             frame.getBillsTableModel().fireTableDataChanged();
-           
+
         }
         billItemDialogue.setVisible(false);
         billItemDialogue.dispose();
         billItemDialogue = null;
-    } 
+    }
 
     private void createItemCancel() {
         billItemDialogue.setVisible(false);
         billItemDialogue.dispose();
         billItemDialogue = null;
     }
-
 
 }
