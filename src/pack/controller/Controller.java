@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pack.sales.controller;
+package pack.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,13 +19,13 @@ import java.util.List;
 import javax.swing.JFileChooser;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import pack.sales.model.Bill;
-import pack.sales.model.BillItem;
-import pack.sales.model.BillsTableModel;
-import pack.sales.model.ItemsTableModel;
-import pack.sales.view.BillDialogue;
-import pack.sales.view.BillItemDialogue;
-import pack.sales.view.BillFrame;
+import pack.model.Bill;
+import pack.model.BillItem;
+import pack.model.BillsTableModel;
+import pack.model.ItemsTableModel;
+import pack.view.BillDialogue;
+import pack.view.BillItemDialogue;
+import pack.view.BillFrame;
 
 /**
  *
@@ -50,43 +50,37 @@ public class Controller implements ActionListener, ListSelectionListener {
 
         switch (actionComm) {
             case "Load File":
-                System.out.println("Action: Load File");
                 loadFile();
                 break;
             case "Save File":
-                System.out.println("Action: Save File");
                 saveFile();
                 break;
             case "Create New Invoice":
-                System.out.println("Action: Create New Invoice");
                 crNewInv();
                 break;
             case "Delete Invoice":
-                System.out.println("Action: Delete Invoice");
                 delInv();
                 break;
             case "Create Item":
-                System.out.println("Action: Create Item");
                 crItem();
                 break;
             case "Delete Item":
-                System.out.println("Action: Delete Item");
                 delItem();
                 break;
-            case "createBillOK":
-                createBillOK();
+            case "confirmBill":
+                confirmBill();
                 break;
 
-            case "creatBillCancel":
-                creatBillCancel();
+            case "cancelBill":
+                cancelBill();
                 break;
 
-            case "createItemOK":
-                createItemOK();
+            case "confirmItem":
+                confirmItem();
                 break;
 
-            case "createItemCancel":
-                createItemCancel();
+            case "cancelItem":
+                cancelItem();
                 break;
 
             default:
@@ -120,7 +114,6 @@ public class Controller implements ActionListener, ListSelectionListener {
                 File hF = fc.getSelectedFile();
                 Path hP = Paths.get(hF.getAbsolutePath());
                 List<String> hlines = Files.readAllLines(hP);
-                System.out.println("Invoices have been read");
                 ArrayList<Bill> billsArray = new ArrayList<>();
                 for (String hl : hlines) {
                     String[] hparts = hl.split(",");
@@ -244,7 +237,7 @@ public class Controller implements ActionListener, ListSelectionListener {
 
     }
 
-    private void createBillOK() {
+    private void confirmBill() {
         String date = billDialogue.getInvDateField().getText();
         String client = billDialogue.getCustNameField().getText();
         int num = frame.getMaxBillNum();
@@ -257,13 +250,13 @@ public class Controller implements ActionListener, ListSelectionListener {
         billDialogue = null;
     }
 
-    private void creatBillCancel() {
+    private void cancelBill() {
         billDialogue.setVisible(false);
         billDialogue.dispose();
         billDialogue = null;
     }
 
-    private void createItemOK() {
+    private void confirmItem() {
         String item = billItemDialogue.getItemNameField().getText();
         String countStr = billItemDialogue.getItemCountField().getText();
         String priceStr = billItemDialogue.getItemPriceField().getText();
@@ -284,7 +277,7 @@ public class Controller implements ActionListener, ListSelectionListener {
         billItemDialogue = null;
     }
 
-    private void createItemCancel() {
+    private void cancelItem() {
         billItemDialogue.setVisible(false);
         billItemDialogue.dispose();
         billItemDialogue = null;

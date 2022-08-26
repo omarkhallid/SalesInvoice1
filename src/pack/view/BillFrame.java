@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pack.sales.view;
+package pack.view;
 
 import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.JTable;
-import pack.sales.controller.Controller;
-import pack.sales.model.Bill;
-import pack.sales.model.BillsTableModel;
+import pack.controller.Controller;
+import pack.model.Bill;
+import pack.model.BillsTableModel;
 
 /**
  *

@@ -1,5 +1,5 @@
 
-package pack.sales.model;
+package pack.model;
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 

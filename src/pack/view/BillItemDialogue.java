@@ -1,9 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package pack.sales.view;
+
+package pack.view;
 
 import java.awt.GridLayout;
 import javax.swing.JButton;
@@ -11,45 +7,42 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-/**
- *
- * @author DELL
- */
+
 public class BillItemDialogue extends JDialog{
     private JTextField itemNameField;
-    private JTextField itemCountField;
     private JTextField itemPriceField;
-    private JLabel itemNameLbl;
-    private JLabel itemCountLbl;
-    private JLabel itemPriceLbl;
+    private JTextField itemCountField;
+    private JLabel itemNameLabel;
+    private JLabel itemCountLabel;
+    private JLabel itemPriceLabel;
     private JButton okButton;
     private JButton cancelButton;
     
     public BillItemDialogue(BillFrame frame) {
-        itemNameField = new JTextField(20);
-        itemNameLbl = new JLabel("Item Name");
+        itemNameField = new JTextField(35);
+        itemNameLabel = new JLabel("Item Name");
         
-        itemCountField = new JTextField(20);
-        itemCountLbl = new JLabel("Item Count");
+        itemCountField = new JTextField(35);
+        itemCountLabel = new JLabel("Item Count");
         
-        itemPriceField = new JTextField(20);
-        itemPriceLbl = new JLabel("Item Price");
+        itemPriceField = new JTextField(35);
+        itemPriceLabel = new JLabel("Item Price");
         
         okButton = new JButton("OK");
         cancelButton = new JButton("Cancel");
         
-        okButton.setActionCommand("createItemOK");
-        cancelButton.setActionCommand("createItemCancel");
+        okButton.setActionCommand("confirmItem");
+        cancelButton.setActionCommand("cancelItem");
         
         okButton.addActionListener(frame.getController());
         cancelButton.addActionListener(frame.getController());
         setLayout(new GridLayout(4, 2));
         
-        add(itemNameLbl);
+        add(itemNameLabel);
         add(itemNameField);
-        add(itemCountLbl);
+        add(itemCountLabel);
         add(itemCountField);
-        add(itemPriceLbl);
+        add(itemPriceLabel);
         add(itemPriceField);
         add(okButton);
         add(cancelButton);
